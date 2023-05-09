@@ -1,27 +1,27 @@
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "AuthorISBN")
 public class AuthorISBN {
+    // foregin key
     @Id
-    @Column(name="AuthorID", updatable = false, unique = true, nullable = false)
-    private UUID authorID;
+    @ManyToOne
+    @JoinColumn(name = "AuthorID")
+    private Authors authorID;
 
     @Id
-    @Column(name="ISBN", updatable = false, unique = true, nullable = false, length = 13)
-    private String isbn;
+    @ManyToOne
+    @JoinColumn(name = "ISBN")
+    private Titles title;
 
     // Setters
-    public void setAuthorID(UUID authorID) {
+    public void setAuthor(Authors authorID) {
         this.authorID = authorID;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
+    public void setTitle(Titles title) {
+        this.title = title;
     }
 }
