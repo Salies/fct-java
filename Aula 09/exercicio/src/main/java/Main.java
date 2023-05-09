@@ -11,7 +11,7 @@ public class Main {
         // Inserindo 3 dados em cada uma das tabelas
         // Dados dos 3 autores
         String[] firstNames = {"Neil", "Graciliano", "Grant"};
-        String[] lastNames = {"Gaiman", "Ramos", "Morrison"};
+        String[] lastNames = {"Gayman", "Ramos", "Morrison"};
 
         // Dados dos 3 livros
         String[] bookTitles = {"Stardust", "Angústia", "Batman: Arkham Asylum"};
@@ -43,6 +43,22 @@ public class Main {
             em.persist(authorISBN);
         }
 
+        em.getTransaction().commit();
+
+        em.getTransaction().begin();
+        // Fazendo uma atualização
+        // Acha o autor com LastName = "Gayman"
+        // (consulta)
+        Authors author = em.createQuery("SELECT a FROM Authors a WHERE a.lastName = 'Gayman'", Authors.class).getSingleResult();
+        // Substitui por "Gaiman"
+        // (atualização)
+        author.setLastName("Gaiman");
+        em.persist(author);
+        // Exclui o registro AuthorISBN com ISBN = "9788501115942"
+        // (exclusão)
+        AuthorISBN authorISBN = em.createQuery("SELECT a FROM AuthorISBN a WHERE a.title.isbn = '9788501115942'", AuthorISBN.class).getSingleResult();
+        em.remove(authorISBN);
+        // Persiste as operações
         em.getTransaction().commit();
     }
 }
