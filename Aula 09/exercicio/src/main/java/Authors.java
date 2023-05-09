@@ -15,4 +15,18 @@ public class Authors {
 
     @Column(name="LastName", nullable = false, length = 64)
     private String lastName;
+
+    // Setters
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    // Getters
+    public UUID getId() {
+        return id;
+    }
 }

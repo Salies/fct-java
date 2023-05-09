@@ -18,4 +18,26 @@ public class Titles {
 
     @Column(name="Copyright", nullable = false, length = 128)
     private String copyright;
+
+    // Setters
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setEditionNumber(int editionNumber) {
+        this.editionNumber = editionNumber;
+    }
+
+    public void setCopyright(String copyright) {
+        this.copyright = copyright;
+    }
+
+    // Getters
+    public String getIsbn() {
+        return isbn;
+    }
 }
